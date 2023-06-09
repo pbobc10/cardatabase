@@ -2,8 +2,10 @@ package com.bsdev.cardatabase;
 
 import com.bsdev.cardatabase.entity.Car;
 import com.bsdev.cardatabase.entity.Owner;
+import com.bsdev.cardatabase.entity.User;
 import com.bsdev.cardatabase.repository.CarRepository;
 import com.bsdev.cardatabase.repository.OwnerRepository;
+import com.bsdev.cardatabase.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ private static final Logger logger = LoggerFactory.getLogger(CardatabaseApplicat
 
 	@Autowired
 	private OwnerRepository ownerRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	public static void main(String[] args) {
 		// After adding this comment the application is restarted
@@ -42,6 +47,11 @@ private static final Logger logger = LoggerFactory.getLogger(CardatabaseApplicat
 			carRepository.save(new Car("Ford","Mustang","Red","ADF-1121",2017,59000,owner1));
 			carRepository.save(new Car("Nissan","Leaf","White","SSJ-3002",2014,29000,owner2));
 			carRepository.save(new Car("Toyota","Prius","Silver","KKO-0212",2018,39000,owner1));
+
+			// Add user object and save these to db
+			// username: user password: user
+			userRepository.save(new User("user","$2a$04$E2V/RU.AGuxFJMSu.RKHiOo4NowdCkidRKqeH97s044KM6yo9Uvki","USER"));
+			userRepository.save(new User("admin","$2a$04$PcvYYPyilfmn.ulLs9JT.Ocd31Q8xS08QCjA1ms6VC0gzM/8ogBZu","ADMIN"));
 		};
 	}
 
